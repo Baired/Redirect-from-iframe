@@ -1,6 +1,6 @@
 <?php
 
-$apiURL = 'https://my-api.org/api/cache-api.php';
+$apiURL = 'cache-api.php';
 
 $ip = $_SERVER['REMOTE_ADDR'];
 
