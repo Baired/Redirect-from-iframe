@@ -1,6 +1,32 @@
 # Redirect From iFrame
-API code for creating and viewing cache files on the server, and an iFrame example for redirecting a user to a different website.
-⋅⋅* Checks for the presence of GET parameter 'type'
-⋅⋅* If 'type' is 'write', creates a new cache file with the specified URL, if it was passed in the GET parameter 'url'
-⋅⋅* If 'type' is 'view', checks for the existence of a cache file and outputs its content if the file exists. Then the cache file is deleted.
-⋅⋅* If 'type' is 'javascript', outputs JavaScript code that periodically requests the API to check for the existence of a cache file, and if it exists, redirects the user to the URL that was saved in the cache file.
+
+This API requires setting the API URL in a variable as follows:
+```php 
+$apiURL = 'https://example.com/cache-api.php'; 
+```
+
+<br>
+
+To use this API, you also need to create a directory called **cache** in the same directory where the **cache-api.php** file is located and set its permissions to **757**
+
+```
+chmod 757 /var/www/your-domain.com/cache
+```
+
+<br>
+
+After setting up the server-side part, we need to add a **script** to the file from which the redirect should occur, which checks our transition in the iframe
+```html
+<script src="https://your-domain.com/cache-api.php?type=javascript"></script>
+```
+
+<br>
+
+Now, in our iframe, we can add the following link to any button for redirect.
+```html
+<a href="https://your-domain.com/cache-api.php?type=write&url=https://google.com/">Redirect</a>
+```
+
+<br>
+
+This way, in the main tab, you will be redirected to the page **https://google.com/**.
